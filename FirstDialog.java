@@ -1,5 +1,4 @@
-//Example 2: FirstDialog.java
-//Pham Huy Ha Thai - 20204784
+//Pham Huy Ha Thai - MSSV: 20204784
 import javax.swing.JOptionPane;
 public class FirstDialog {
     public static void main(String[] args) {

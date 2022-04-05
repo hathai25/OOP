@@ -1,4 +1,4 @@
-//Example 3: HelloNameDialog.java
+//Pham Huy Ha Thai - MSSV: 20204784
 import javax.swing.JOptionPane;
 public class HelloNameDialog {
     public static void main(String[] args) {

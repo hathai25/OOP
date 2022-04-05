@@ -1,3 +1,5 @@
+//Pham Huy Ha Thai - MSSV: 20204784
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -90,21 +92,24 @@ public class Equation {
         inputTable.add(cField);
         inputTable.add(new JLabel(" = 0"));
         // get input
-        JOptionPane.showConfirmDialog(null, inputTable, "Enter the values", JOptionPane.OK_CANCEL_OPTION);
-        a = Double.parseDouble(aField.getText());
-        b = Double.parseDouble(bField.getText());
-        c = Double.parseDouble(cField.getText());
+        do {
+            JOptionPane.showConfirmDialog(null, inputTable, "Enter the values", JOptionPane.OK_CANCEL_OPTION);
+            a = Double.parseDouble(aField.getText());
+            b = Double.parseDouble(bField.getText());
+            c = Double.parseDouble(cField.getText());
+            if (a == 0) JOptionPane.showMessageDialog(null, "Not a valid second-degree equation");
+        } while(a == 0);
+        
         delta = b*b - 4*a*c;
-        if (a == 0) JOptionPane.showMessageDialog(null, "Not a valid second-degree equation");
         if (delta == 0) {
             x = - b / (2*a);
             JOptionPane.showMessageDialog(null, "The equation has double root: x = " + x, "Result", JOptionPane.INFORMATION_MESSAGE);
         }   else if (delta > 0) {
-            x1 = (-b + Math.sqrt(delta)) / (2*a);
-            x2 = (-b - Math.sqrt(delta)) / (2*a);
-            JOptionPane.showMessageDialog(null, "The equation has two distinct roots: x1 = " + x1 + ", x2 = " + x2, "Result", JOptionPane.INFORMATION_MESSAGE);
+                x1 = (-b + Math.sqrt(delta)) / (2*a);
+                x2 = (-b - Math.sqrt(delta)) / (2*a);
+                JOptionPane.showMessageDialog(null, "The equation has two distinct roots: x1 = " + x1 + ", x2 = " + x2, "Result", JOptionPane.INFORMATION_MESSAGE);
         }   else {
-            JOptionPane.showMessageDialog(null, "The equation has no solution", "Result", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The equation has no solution", "Result", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     public static void main(String[] args) {
