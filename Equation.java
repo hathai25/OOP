@@ -1,4 +1,5 @@
 //Pham Huy Ha Thai - MSSV: 20204784
+//BT 2.2.6
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

@@ -1,4 +1,5 @@
 //Pham Huy Ha Thai - MSSV: 20204784
+//BT 2.2.4
 
 import javax.swing.JOptionPane;
 public class ShowTwoNumbers {
