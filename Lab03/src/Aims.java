@@ -51,7 +51,7 @@ public class Aims {
 		dvd5.setDirector("M-TP");
 		dvd5.setLength(90);
 		//remove dvd out of the order
-		anOrder.removeDigitalVideoDisc(dvd5);
+		anOrder.removeDigitalVideoDisc(dvd4);
 		
 		System.out.print("Total cost is: ");
 		System.out.println(anOrder.totalCost());
