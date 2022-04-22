@@ -1,3 +1,4 @@
+import java.util.Calendar;
 
 public class Order {
 	public static final int MAX_NUMBERS_ORDERED = 10;
@@ -5,6 +6,21 @@ public class Order {
 	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
 	
 	public int qtyOrdered = 0;
+	
+	public String dateOrdered;
+	
+	public String getDateOrdered() {
+		return dateOrdered;
+	}
+
+	public void setDateOrdered(String dateOrdered) {
+		this.dateOrdered = dateOrdered;
+	}
+	
+	
+	public static final int MAX_LIMITED_ORDERS = 5;
+	
+	private static int nbOrders = 0;
 
 	public int getQtyOrdered() {
 		return qtyOrdered;
@@ -12,6 +28,18 @@ public class Order {
 
 	public void setQtyOrdered(int qtyOrdered) {
 		this.qtyOrdered = qtyOrdered;
+	}
+	//constructor
+	public Order() {
+		super();
+		if (nbOrders < MAX_LIMITED_ORDERS) {
+			nbOrders++;
+			Calendar orderDate = Calendar.getInstance();
+			setDateOrdered(orderDate.get(Calendar.DATE) + "/" + orderDate.get(Calendar.MONTH) + "/" + orderDate.get(Calendar.YEAR));
+			System.out.println("Order #" + nbOrders + " created!");
+		}	else {
+			System.out.println("You've reached maximum orders!");
+		}
 	}
 	//method
 	//add single disc
@@ -22,7 +50,6 @@ public class Order {
 		}	else {
 			itemsOrdered[tempQty] = disc;
 			setQtyOrdered(++qtyOrdered);
-			System.out.println(qtyOrdered + ". '" + disc.getTitle() + "'" + " has been added");
 		}
 	}
 	//add an array disc
@@ -68,6 +95,7 @@ public class Order {
 				setQtyOrdered(--qtyOrdered);
 				System.out.println(qtyOrdered + ". '" + disc.getTitle() + "'" + " has been removed");
 				break;
+
 			}
 		}
 		if (count == 0) System.out.println("'" + disc.getTitle() + "'" + " not found");
@@ -81,4 +109,16 @@ public class Order {
 		}
 		return total;
 	}	
+	//print Order
+	public void printOrder() {
+		System.out.println("\n*********************Order*************************");
+		System.out.println("Date: " + getDateOrdered());
+		System.out.println("Ordered Items: ");
+		for (int i = 0; i<getQtyOrdered(); i++) {
+			System.out.println(i+1 + ". DVD - " + itemsOrdered[i].getTitle() + " - " + itemsOrdered[i].getCategory() + " - "+ itemsOrdered[i].getDirector() + " - " + itemsOrdered[i].getLength() + ": " + itemsOrdered[i].getCost() + " $");
+		}
+		System.out.println("Total cost: " + totalCost());
+		System.out.println("***************************************************");
+
+	}
 }
