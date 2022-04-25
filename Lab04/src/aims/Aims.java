@@ -1,3 +1,4 @@
+package aims;
 
 public class Aims {
 
@@ -21,10 +22,12 @@ public class Aims {
 		anOrder3.addDigitalVideoDisc1(dvd1, dvd2, dvd3);
 		anOrder4.addDigitalVideoDisc1(dvd1, dvd2, dvd3);
 		anOrder5.addDigitalVideoDisc1(dvd4, dvd2, dvd3, dvd5);
-		anOrder6.addDigitalVideoDisc1(dvd4, dvd5, dvd2, dvd1);
 		//print cost
+		anOrder.printOrder();
+		anOrder2.printOrder();
+		anOrder3.printOrder();
+		anOrder4.printOrder();
 		anOrder5.printOrder();
-		anOrder6.printOrder();
 	}
 
 }

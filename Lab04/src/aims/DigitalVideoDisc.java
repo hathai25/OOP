@@ -1,3 +1,4 @@
+package aims;
 
 public class DigitalVideoDisc {
 	//data
