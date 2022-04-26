@@ -36,7 +36,7 @@ public class Order {
 		if (nbOrders < MAX_LIMITED_ORDERS) {
 			nbOrders++;
 			Calendar orderDate = Calendar.getInstance();
-			setDateOrdered(orderDate.get(Calendar.DATE) + "/" + orderDate.get(Calendar.MONTH) + "/" + orderDate.get(Calendar.YEAR));
+			setDateOrdered(orderDate.get(Calendar.DATE) + "/" + orderDate.get(Calendar.MONTH) + "/" + orderDate.get(Calendar.YEAR) + " - " + orderDate.get(Calendar.HOUR_OF_DAY) + ":" + orderDate.get(Calendar.MINUTE));
 			System.out.println("Order #" + nbOrders + " created!");
 		}	else {
 			System.out.println("You've reached maximum orders!");
@@ -112,14 +112,14 @@ public class Order {
 	}	
 	//print Order
 	public void printOrder() {
-		System.out.println("\n*********************Order*************************");
+		System.out.println("\n*****************************Order*********************************");
 		System.out.println("Date: " + getDateOrdered());
 		System.out.println("Ordered Items: ");
 		for (int i = 0; i<getQtyOrdered(); i++) {
 			System.out.println(i+1 + ". DVD - " + itemsOrdered[i].getTitle() + " - " + itemsOrdered[i].getCategory() + " - "+ itemsOrdered[i].getDirector() + " - " + itemsOrdered[i].getLength() + ": " + itemsOrdered[i].getCost() + " $");
 		}
 		System.out.println("Total cost: " + totalCost());
-		System.out.println("***************************************************");
+		System.out.println("*******************************************************************");
 
 	}
 }
