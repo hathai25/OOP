@@ -1,7 +1,7 @@
 package hust.soict.it2.aims;
 
 import hust.soict.it2.aims.disc.*;
-import hust.soict.aims.order.*;
+import hust.soict.it2.aims.order.*;
 
 public class Aims {
 
@@ -25,12 +25,6 @@ public class Aims {
 		anOrder3.addDigitalVideoDisc1(dvd1, dvd2, dvd3);
 		anOrder4.addDigitalVideoDisc1(dvd1, dvd2, dvd3);
 		anOrder5.addDigitalVideoDisc1(dvd4, dvd2, dvd3, dvd5);
-		//print cost
-		anOrder.printOrder();
-		anOrder2.printOrder();
-		anOrder3.printOrder();
-		anOrder4.printOrder();
-		anOrder5.printOrder();
 	}
 
 }

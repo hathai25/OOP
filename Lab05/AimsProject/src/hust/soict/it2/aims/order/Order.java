@@ -1,4 +1,4 @@
-package hust.soict.aims.order;
+package hust.soict.it2.aims.order;
 
 import hust.soict.it2.aims.disc.*;
 import java.util.Calendar;
@@ -103,15 +103,19 @@ public class Order {
 		}
 		if (count == 0) System.out.println("'" + disc.getTitle() + "'" + " not found");
 	}
+	//get lucky item
+	public DigitalVideoDisc getALuckyItem() {
+		return itemsOrdered[(int)(Math.random()*qtyOrdered)+1];
+	}
 	//total bill
 	public float totalCost() {
 		int order = getQtyOrdered();
 		float total = 0;
 		for (int i = 0; i < order; i++) {
 			total += itemsOrdered[i].getCost();
-		}
+		}		
 		return total;
-	}	
+	}
 	//print Order
 	public void printOrder() {
 		System.out.println("\n*****************************Order*********************************");
@@ -120,8 +124,9 @@ public class Order {
 		for (int i = 0; i<getQtyOrdered(); i++) {
 			System.out.println(i+1 + ". DVD - " + itemsOrdered[i].getTitle() + " - " + itemsOrdered[i].getCategory() + " - "+ itemsOrdered[i].getDirector() + " - " + itemsOrdered[i].getLength() + ": " + itemsOrdered[i].getCost() + " $");
 		}
-		System.out.println("Total cost: " + totalCost());
+		DigitalVideoDisc freeItem = getALuckyItem();
+		System.out.println("Congratulation! You can get the " + freeItem.getTitle() + " for free!");
+		System.out.println("Total cost: " + (totalCost() - freeItem.getCost()));
 		System.out.println("*******************************************************************");
-
-	}
+	}	
 }

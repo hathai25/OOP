@@ -62,4 +62,12 @@ public class DigitalVideoDisc {
 		this.length = length;
 		this.cost = cost;
 	}
+	//method
+	public boolean search(String title) {
+		String[] split = title.split(" ");
+		for (String x : split) {
+			if (this.title.contains(x)) return true;
+		}	
+		return false;
+	}	
 }
