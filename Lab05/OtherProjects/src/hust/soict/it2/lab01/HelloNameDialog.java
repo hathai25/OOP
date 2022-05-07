@@ -4,6 +4,7 @@ package hust.soict.it2.lab01;
 //BT 2.2.3
 
 import javax.swing.JOptionPane;
+
 public class HelloNameDialog {
   public static void main(String[] args) {
       String result;
