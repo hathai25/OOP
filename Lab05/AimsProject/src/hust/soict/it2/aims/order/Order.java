@@ -8,14 +8,6 @@ public class Order {
 	public static final int MAX_NUMBERS_ORDERED = 10;
 	private ArrayList<Media> itemsOrdered = new ArrayList<Media>(MAX_NUMBERS_ORDERED);
 	public String dateOrdered;
-	protected int id = 0;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getDateOrdered() {
 		return dateOrdered;
 	}
@@ -33,7 +25,6 @@ public class Order {
 		super();
 		if (nbOrders < MAX_LIMITED_ORDERS) {
 			nbOrders++;
-			id++;
 			Calendar orderDate = Calendar.getInstance();
 			setDateOrdered(orderDate.get(Calendar.DATE) + "/" + orderDate.get(Calendar.MONTH) + "/" + orderDate.get(Calendar.YEAR) + " - " + orderDate.get(Calendar.HOUR_OF_DAY) + ":" + orderDate.get(Calendar.MINUTE));
 			System.out.println("Order #" + nbOrders + " created!");
@@ -46,7 +37,7 @@ public class Order {
 		for (Media newMedia : args) {
 			if (itemsOrdered.size() < 10) {
 				itemsOrdered.add(newMedia);
-				System.out.println(newMedia.getTitle() + " added!");
+				System.out.println(newMedia.getTitle() + " - ID: " + newMedia.getId() + " added!");
 			}	else {
 				System.out.println(newMedia.getTitle() + " can't be added. You've reached your maximum media!");
 			}
@@ -64,7 +55,7 @@ public class Order {
 			itemsOrdered.remove(delMedia);
 			System.out.println(delMedia.getTitle() + " removed!");
 		}	else {
-			System.out.println(delMedia.getTitle() + " not found in your order");
+			System.out.println("ID " + delMedia.getId() + " not found in your order");
 		}
 	}
 

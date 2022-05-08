@@ -5,7 +5,9 @@ public class Media {
 	protected String title;
 	protected String category;
 	protected float cost;
-	protected int id = 0;
+	private static int counter = 0;
+
+    protected int id;
 	
 	public String getTitle() {
 		return title;
@@ -44,7 +46,7 @@ public class Media {
 		setTitle(title);
 		setCategory(category);
 		setCost(cost);
-		id++;
+		setId(++counter);
 	}
 	
 }
