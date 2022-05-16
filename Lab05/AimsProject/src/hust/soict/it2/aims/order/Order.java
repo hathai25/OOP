@@ -8,6 +8,7 @@ public class Order {
 	public static final int MAX_NUMBERS_ORDERED = 10;
 	private ArrayList<Media> itemsOrdered = new ArrayList<Media>(MAX_NUMBERS_ORDERED);
 	public String dateOrdered;
+	protected int id;
 	public String getDateOrdered() {
 		return dateOrdered;
 	}
@@ -33,15 +34,13 @@ public class Order {
 		}
 	}
 	//add media
-	public void addMedia(Media ... args) {
-		for (Media newMedia : args) {
+	public void addMedia(Media newMedia) {
 			if (itemsOrdered.size() < 10) {
 				itemsOrdered.add(newMedia);
 				System.out.println(newMedia.getTitle() + " - ID: " + newMedia.getId() + " added!");
 			}	else {
 				System.out.println(newMedia.getTitle() + " can't be added. You've reached your maximum media!");
 			}
-		}	
 	}
 	
 	public ArrayList<Media> getItemsOrdered() {
@@ -50,12 +49,18 @@ public class Order {
 	public void setItemsOrdered(ArrayList<Media> itemsOrdered) {
 		this.itemsOrdered = itemsOrdered;
 	}
-	public void removeMedia(Media delMedia) {
-		if (itemsOrdered.contains(delMedia)) {
-			itemsOrdered.remove(delMedia);
-			System.out.println(delMedia.getTitle() + " removed!");
-		}	else {
-			System.out.println("ID " + delMedia.getId() + " not found in your order");
+	public void removeMedia(int id) {
+		int count = 0;
+		for (Media i : itemsOrdered) {
+			if (i.getId() == id) {
+				count++;
+				itemsOrdered.remove(i);
+				System.out.println(i.getTitle() + " removed!");
+				break;
+			}
+		}	
+		if (count == 0) {
+			System.out.println("ID " + id + " not found in your order");
 		}
 	}
 
@@ -76,14 +81,19 @@ public class Order {
 		System.out.println("\n*****************************Order*********************************");
 		System.out.println("Date: " + getDateOrdered());
 		System.out.println("Ordered Items: ");
-		for (Media i : itemsOrdered) {
+		if (itemsOrdered.isEmpty()) {
+			System.out.println("No items added!");
+		}	else {
 			int x = 0;
-			System.out.println(x+1 + ". DVD - " + i.getTitle() + " - " + i.getCategory() + ": " + i.getCost() + " $");
-			x++;
+			for (Media i : itemsOrdered) {
+				System.out.println(x+1 + ". " + i.getTitle() + " - " + i.getCategory() + ": " + i.getCost() + " $");
+				x++;
+			}
+			Media freeItem = getALuckyItem();
+			System.out.println("Congratulation! You can get the " + freeItem.getTitle() + " for free!");
+			System.out.println("Total cost: " + (totalCost() - freeItem.getCost()));
+			System.out.println("*******************************************************************");
+
 		}
-		Media freeItem = getALuckyItem();
-		System.out.println("Congratulation! You can get the " + freeItem.getTitle() + " for free!");
-		System.out.println("Total cost: " + (totalCost() - freeItem.getCost()));
-		System.out.println("*******************************************************************");
 	}	
 }

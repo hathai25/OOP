@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Media {
-
 	private List<String> authors = new ArrayList<String>();
 	
 	public List<String> getAuthors() {
@@ -33,9 +32,10 @@ public class Book extends Media {
 		}
 	}
 	
-	public Book(String title, String category, float cost) {
+	public Book(String title, String category, float cost, List<String> authors) {
 		// TODO Auto-generated constructor stub
 		super(title, category, cost);
+		this.authors = authors;
 		id++;
 	}
 

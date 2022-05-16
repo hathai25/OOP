@@ -1,6 +1,8 @@
 package hust.soict.it2.aims;
 
-import hust.soict.it2.aims.media.Media;
+import hust.soict.it2.aims.media.Book;
+import hust.soict.it2.aims.media.CompactDisc;
+import hust.soict.it2.aims.media.DigitalVideoDisc;
 import hust.soict.it2.aims.order.*;
 
 import java.util.ArrayList;
@@ -8,15 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Aims {
-	private static List<Media> storeMedia = new ArrayList<>();
 	private static List<Order> orders = new ArrayList<>();
 	
 	public static void showMenu() {
-		storeMedia.add(new Media("The Lion King", "Animation", 19.95f));
-		storeMedia.add(new Media("Star Wars", "Science Fiction", 25.95f));
-		storeMedia.add(new Media("Aladdin", "Animation", 18.99f));		
-		storeMedia.add(new Media("Em cua ngay hom qua", "Pop", 19.99f));
-		storeMedia.add(new Media("Con mua ngang qua", "Pop", 19.99f));
 		System. out .println("Order Management Application: ");
 		System. out .println("--------------------------------");
 		System. out .println("1. Create new order");
@@ -25,36 +21,81 @@ public class Aims {
 		System. out .println("4. Display the items list of order");
 		System. out .println("0. Exit");
 		System. out .println("--------------------------------");
-		Scanner keyboard = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		while(true) {
 			System. out .println("Please choose a number: 0-1-2-3-4");
-			String choice = keyboard.nextLine();
+			String choice = input.nextLine();
 			switch(choice) {
 				case "1":
 					orders.add(new Order());
 					break;
 				case "2":
-					System.out.println("Enter the media name to add: ");
-					String mediaInput = "";
-					mediaInput += keyboard.nextLine();
-					int count = 0;
-					for (Media media : storeMedia) {
-						if (media.getTitle().equals(mediaInput)) {
-							orders.get(orders.size()-1).addMedia(media);
+					System.out.println("Choose the media type to add: \n1. Book \n2. Compact Disc \n3. Digital Video Disc");
+					String type = input.nextLine();
+					switch (type) {
+						case "1":
+							System.out.println("Enter book title: ");
+							String title1 = input.nextLine();
+							System.out.println("Enter book category: ");
+							String category1 = input.nextLine();
+							System.out.println("Enter book cost: ");
+							float cost1 = Float.parseFloat(input.nextLine());
+							System.out.println("Enter book authors: ");
+							String author1 = input.nextLine();
+							List<String> authors = new ArrayList<>();
+							authors.add(author1);
+							orders.get(orders.size()-1).addMedia(new Book(title1, category1, cost1, authors));
 							break;
-						}	else count++;
+						case "2":
+							System.out.println("Enter CD title: ");
+							String title2 = input.nextLine();
+							System.out.println("Enter CD category: ");
+							String category2 = input.nextLine();
+							System.out.println("Enter CD cost: ");
+							float cost2 = Float.parseFloat(input.nextLine());
+							System.out.println("Enter CD director: ");
+							String director2 = input.nextLine();
+							System.out.println("Enter CD artist: ");
+							String artist2 = input.nextLine();
+							orders.get(orders.size()-1).addMedia(new CompactDisc(title2, category2, cost2, director2, artist2));
+							CompactDisc temp = new CompactDisc(title2, category2, cost2, director2, artist2);
+							while(true) {
+								System.out.println("Add your tracks? \n1. Yes\n2. No");
+								int ans = Integer.parseInt(input.nextLine());
+								if (ans == 1) {
+									System.out.println("Enter track title: ");
+									String title = input.nextLine();
+									System.out.println("Enter track length: ");
+									int length = Integer.parseInt(input.nextLine());
+									temp.addTrack(title, length);
+								}	else break;
+							}
+							System.out.println("Would you like to play it?\n1. Yes\n2. No");
+							int choice2 = Integer.parseInt(input.nextLine());
+							if (choice2 == 1) temp.play();
+							break;
+						case "3":
+							System.out.println("Enter DVD title: ");
+							String title3 = input.nextLine();
+							System.out.println("Enter DVD category: ");
+							String category3 = input.nextLine();
+							System.out.println("Enter DVD cost: ");
+							float cost3 = Float.parseFloat(input.nextLine());
+							System.out.println("Enter DVD length: ");
+							int length3 = Integer.parseInt(input.nextLine());
+							System.out.println("Enter DVD director: ");
+							String director3 = input.nextLine();
+							orders.get(orders.size()-1).addMedia(new DigitalVideoDisc(title3, category3, cost3, length3, director3));
+							System.out.println("Would you like to play it?\n1. Yes\n2. No");
+							int choice3 = Integer.parseInt(input.nextLine());
+							if (choice3 == 1) new DigitalVideoDisc(title3, category3, cost3, length3, director3).play();
+							break;
 					}
-					if (count != 0) System.out.println(mediaInput + " not founded in the database!");
 					break;
 				case "3":
-					System.out.println("Enter the media id to delete: ");
-					String idInput = keyboard.nextLine();
-					for (Media media : storeMedia) {
-						if (media.getId() == Integer.parseInt(idInput)) {
-							orders.get(orders.size()-1).removeMedia(media);
-							break;
-						}
-					}
+					System.out.print("Enter the media id to delete: ");
+					int idInput = Integer.parseInt(input.nextLine());
+					orders.get(orders.size()-1).removeMedia(idInput);
 					break;
 				case "4":
 					orders.get(orders.size()-1).printOrder();
@@ -68,12 +109,12 @@ public class Aims {
 		}
 	}
 	
-	public static void main(String[] args) {
-		// Create a new dvd object and set the fields
-		
-		showMenu();
-
-		
+	public static void main(String[] args) {	
+		MemoryDaemon thread = new MemoryDaemon();
+		Thread wtf = new Thread(thread);
+		wtf.setDaemon(true);
+		wtf.start();
+		showMenu();	
 	}
 
 }

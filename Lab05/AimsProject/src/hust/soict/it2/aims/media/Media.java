@@ -1,12 +1,11 @@
 package hust.soict.it2.aims.media;
 
-public class Media {
+public abstract class Media {
 	
 	protected String title;
 	protected String category;
 	protected float cost;
 	private static int counter = 0;
-
     protected int id;
 	
 	public String getTitle() {
@@ -46,7 +45,7 @@ public class Media {
 		setTitle(title);
 		setCategory(category);
 		setCost(cost);
-		setId(++counter);
+		setId(counter++);
 	}
 	
 }
