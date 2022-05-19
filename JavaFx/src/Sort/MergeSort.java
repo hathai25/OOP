@@ -1,12 +1,6 @@
 package Sort;
 
-import java.util.Scanner;
-
 public class MergeSort {
-
-    // Merge hai mang con cua arr[].
-    // Mang con thu nhat la arr[l..m]
-    // Mang con thu hai la arr[m+1..r]
     public static void merge(int arr[], int l, int m, int r) {
 
         // tim kich thuoc cua 2 mang
@@ -70,30 +64,4 @@ public class MergeSort {
         }
     }
 
-    // In cac phan tu cua mang
-    static void printArray(int arr[]) {
-        int n = arr.length;
-        for (int i = 0; i < n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
-    }
-
-    public static void main(String args[]) {
-        Scanner ip = new Scanner(System.in);
-        int n;
-        System.out.println("Nhap so phan tu cua mang:");
-        n = ip.nextInt();
-        int []arr = new int[n];
-        System.out.println("Nhap cac phan tu cua mang:");
-        for(int i=0; i<n;i++) arr[i]=ip.nextInt();
-        System.out.println("Mang ban dau:");
-        printArray(arr);
-
-        MergeSort ob = new MergeSort();
-        ob.sort(arr, 0, arr.length - 1);
-
-        System.out.println("Mang sau khi sap xep:");
-        printArray(arr);
-        ip.close();
-    }
 }

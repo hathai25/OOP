@@ -110,10 +110,6 @@ public class Aims {
 	}
 	
 	public static void main(String[] args) {	
-		MemoryDaemon thread = new MemoryDaemon();
-		Thread wtf = new Thread(thread);
-		wtf.setDaemon(true);
-		wtf.start();
 		showMenu();	
 	}
 
