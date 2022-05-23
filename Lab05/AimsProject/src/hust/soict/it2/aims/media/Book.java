@@ -1,11 +1,23 @@
 package hust.soict.it2.aims.media;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class Book extends Media {
+public class Book extends Media implements Comparable {
 	private List<String> authors = new ArrayList<String>();
-	
+	private String content;
+	private List<String> contentTokens = new ArrayList<String>();
+	private Map<String, Integer> wordFrequency = new HashMap<String, Integer>();
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public List<String> getAuthors() {
 		return authors;
 	}
@@ -32,11 +44,36 @@ public class Book extends Media {
 		}
 	}
 	
-	public Book(String title, String category, float cost, List<String> authors) {
+	public Book(String title, String category, float cost, List<String> authors, String content) {
 		// TODO Auto-generated constructor stub
 		super(title, category, cost);
-		this.authors = authors;
+		setAuthors(authors);
+		setContent(content);
 		id++;
 	}
+	public int compareTo(Object obj) {
+		return this.getTitle().compareTo(((Media) obj).getTitle());
+	}
+	public void processContent() {
+		if (getContent() != "") {
+			String tokens[] = content.split(" ");
+			for (String token : tokens) {
+				contentTokens.add(token);
+			}
+			Collections.sort(contentTokens);
+			for (String token : contentTokens) {
+				Integer count = wordFrequency.get(token);
+				if (count == null) {
+					count = 0;
+				}
+				wordFrequency.put(token, count + 1);
+			}
+		}		
+	}
+	@Override
+	public String toString() {		
+		return this.title + " " + this.category + " " + this.cost + " " + this.content + " " + contentTokens.toString() + " " + wordFrequency.toString();
+	}
+
 
 }

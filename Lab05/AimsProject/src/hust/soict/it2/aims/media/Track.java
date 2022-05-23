@@ -1,6 +1,6 @@
 package hust.soict.it2.aims.media;
 
-public class Track implements Playable {
+public class Track implements Playable, Comparable {
 	private String title;
 	private int length;
 	
@@ -30,5 +30,7 @@ public class Track implements Playable {
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
 	}
-
+	public int compareTo(Object obj) {
+		return this.getTitle().compareTo(((Media) obj).getTitle());
+	}
 }

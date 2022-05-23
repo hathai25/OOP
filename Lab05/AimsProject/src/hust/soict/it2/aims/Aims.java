@@ -3,6 +3,7 @@ package hust.soict.it2.aims;
 import hust.soict.it2.aims.media.Book;
 import hust.soict.it2.aims.media.CompactDisc;
 import hust.soict.it2.aims.media.DigitalVideoDisc;
+import hust.soict.it2.aims.media.Media;
 import hust.soict.it2.aims.order.*;
 
 import java.util.ArrayList;
@@ -44,7 +45,9 @@ public class Aims {
 							String author1 = input.nextLine();
 							List<String> authors = new ArrayList<>();
 							authors.add(author1);
-							orders.get(orders.size()-1).addMedia(new Book(title1, category1, cost1, authors));
+							System.out.println("Enter book content: ");
+							String content1 = input.nextLine();
+							orders.get(orders.size()-1).addMedia(new Book(title1, category1, cost1, authors, content1));
 							break;
 						case "2":
 							System.out.println("Enter CD title: ");
@@ -109,8 +112,32 @@ public class Aims {
 		}
 	}
 	
-	public static void main(String[] args) {	
-		showMenu();	
+	public static void main(String[] args) {
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("sad", "sad", 19.95f, 87, "sadboi" );
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("xad", "sad", 19.95f, 87, "sadboi" );
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("lad", "sad", 19.95f, 87, "sadboi" );
+		CompactDisc cd1 = new CompactDisc("bad", "sad", 19.95f, "sosad", "sadboi");
+		java.util.Collection collection = new java.util.ArrayList();
+		collection.add(dvd1);
+		collection.add(dvd2);
+		collection.add(dvd3);
+		collection.add(cd1);
+		java.util.Iterator iterator = collection.iterator();
+		System.out.println("-------------------");
+		System.out.println("The dvds currently in the order are: ");
+		
+		while (iterator.hasNext() ) {
+			System.out.println(((Media)iterator.next()).getTitle());
+		}
+		java.util.Collections.sort((java.util.List)collection);
+		iterator = collection.iterator();
+		System.out.println("-------------------");
+		System.out.println("The dvds sorted in the order are: ");
+		while (iterator.hasNext() ) {
+			System.out.println(((Media)iterator.next()).getTitle());
+		}
+//		showMenu();	
+		
 	}
 
 }
