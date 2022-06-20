@@ -75,7 +75,13 @@ public class Aims {
 							}
 							System.out.println("Would you like to play it?\n1. Yes\n2. No");
 							int choice2 = Integer.parseInt(input.nextLine());
-							if (choice2 == 1) temp.play();
+							if (choice2 == 1) {
+								try {
+									temp.play();
+								}	catch (PlayerException e) {
+									e.printStackTrace();
+								}
+							}
 							break;
 						case "3":
 							System.out.println("Enter DVD title: ");
@@ -91,7 +97,14 @@ public class Aims {
 							orders.get(orders.size()-1).addMedia(new DigitalVideoDisc(title3, category3, cost3, length3, director3));
 							System.out.println("Would you like to play it?\n1. Yes\n2. No");
 							int choice3 = Integer.parseInt(input.nextLine());
-							if (choice3 == 1) new DigitalVideoDisc(title3, category3, cost3, length3, director3).play();
+							if (choice3 == 1) {
+								try {
+									 new DigitalVideoDisc(title3, category3, cost3, length3, director3).play();
+								}	catch (PlayerException e) {
+									e.printStackTrace();
+								}
+							}
+							
 							break;
 					}
 					break;
@@ -136,7 +149,7 @@ public class Aims {
 		while (iterator.hasNext() ) {
 			System.out.println(((Media)iterator.next()).getTitle());
 		}
-//		showMenu();	
+		showMenu();	
 		
 	}
 

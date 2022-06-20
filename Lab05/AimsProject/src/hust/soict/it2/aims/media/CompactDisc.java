@@ -3,6 +3,8 @@ package hust.soict.it2.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
+import hust.soict.it2.aims.PlayerException;
+
 public class CompactDisc extends Disc implements Playable, Comparable {
 	//fields
 	private String artist;
@@ -53,10 +55,18 @@ public class CompactDisc extends Disc implements Playable, Comparable {
 		return length;
 	}
 	@Override
-	public void play() {
+	public void play() throws PlayerException {
+		if (this.getLength() <= 0) {
+			System.err.println("ERROR: CD length is 0");
+			throw (new PlayerException());
+		}
 		System.out.println("Playing " + getTitle() + " by " + getArtist() + ", length: " + getLength());
 		for (Track i : tracks) {
-			i.play();
+			try {
+				i.play();
+			}	catch (PlayerException e) {
+				e.printStackTrace();
+			}	
 		}
 	}
 	public int compareTo(Object obj) {

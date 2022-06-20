@@ -1,5 +1,7 @@
 package hust.soict.it2.aims.media;
 
+import hust.soict.it2.aims.PlayerException;
+
 public class Track implements Playable, Comparable {
 	private String title;
 	private int length;
@@ -26,7 +28,11 @@ public class Track implements Playable, Comparable {
 	}
 
 	@Override
-	public void play() {
+	public void play() throws PlayerException {
+		if (this.getLength() <= 0) {
+			System.err.println("ERROR: Track length is 0");
+			throw (new PlayerException());
+		}
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
 	}

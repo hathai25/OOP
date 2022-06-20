@@ -14,7 +14,7 @@ public class ProgressDemo extends Application {
     public void start(Stage stage) {
 
         ProgressBar progressBar = new ProgressBar();
-        ProgressIndicator progressIndicator = new ProgressIndicator();
+        ProgressIndicat3or progressIndicator = new ProgressIndicator();
 
         FlowPane root = new FlowPane();
         root.setPadding(new Insets(10));

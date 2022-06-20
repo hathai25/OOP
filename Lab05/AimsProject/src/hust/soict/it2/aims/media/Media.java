@@ -1,6 +1,6 @@
 package hust.soict.it2.aims.media;
 
-public abstract class Media {
+public abstract class Media implements Comparable {
 	
 	protected String title;
 	protected String category;
@@ -47,5 +47,19 @@ public abstract class Media {
 		setCost(cost);
 		setId(counter++);
 	}
-	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null) throw (new NullPointerException());
+		if (o.getClass() != this.getClass()) throw (new ClassCastException());
+		final Media other = (Media) o;
+		if (this.title != other.title) return false;
+		return true;
+	}
+	public int compareTo(Object o) {
+		if (o == null) throw (new NullPointerException());
+		if (o.getClass() != this.getClass()) throw (new ClassCastException());
+		final Media other = (Media) o;
+		return Float.compare(this.cost, other.cost);
+	}
+
 }
